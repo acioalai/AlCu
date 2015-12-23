@@ -6,7 +6,7 @@
 /*   By: acioalai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 15:34:59 by acioalai          #+#    #+#             */
-/*   Updated: 2015/12/20 15:37:20 by acioalai         ###   ########.fr       */
+/*   Updated: 2015/12/20 23:16:23 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ int		ft_winner(int nbr)
 		return (CPU);
 	else
 		return (USR);
-}
-
-int		validate_line(char *line)
-{
-	int		i;
-	int		nb;
-
-	i = -1;
-	while (line[++i])
-		if (!ft_isdigit(line[i]))
-			return (-1);
-	nb = ft_atoi(line);
-	if (nb >= 1 && nb <= 10000)
-		return (nb);
-	else
-		return (-1);
 }
 
 void	add_node(t_line **begin_list, int nb_matches)
@@ -64,6 +48,24 @@ void	add_node(t_line **begin_list, int nb_matches)
 	new->next = NULL;
 }
 
+int		validate_line(char *line)
+{
+	int		i;
+	int		nb;
+
+	i = -1;
+	while (line[++i])
+		if (!ft_isdigit(line[i]))
+			return (-1);
+	nb = ft_atoi(line);
+	if (nb >= 1 && nb <= 10000)
+		return (nb);
+	else
+	{
+		return (-1);
+	}
+}
+
 int		read_input(int fd, t_line **begin_list)
 {
 	char	*line;
@@ -71,6 +73,8 @@ int		read_input(int fd, t_line **begin_list)
 
 	while (get_next_line(fd, &line))
 	{
+		if (ft_strcmp(line, "") == 0)
+			break ;
 		if ((nb_matches = validate_line(line)) == -1)
 			return (-1);
 		add_node(begin_list, nb_matches);
@@ -86,15 +90,11 @@ void	display(t_line *line, int turn)
 	{
 		temp = line;
 		while (temp->next != NULL)
-		{
-			print_line(temp);
 			temp = temp->next;
-		}
-		print_line(temp);
 		if (turn == USR)
-			user_turn(temp);
+			user_turn(temp, line);
 		if (turn == CPU)
-			computer_turn(temp);
+			computer_turn(temp, line);
 		if ((temp->nb_matches == 0) && (temp->prev == NULL))
 		{
 			game_over(turn);

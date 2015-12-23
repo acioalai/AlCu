@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/16 17:39:48 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/16 17:45:39 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:08:59 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_list	*copy_node(t_list *node)
 	if ((new = (t_list *)malloc(sizeof(t_list))) == NULL)
 		return (NULL);
 	new->content = malloc(sizeof(char) * node->content_size);
-	memcpy(new->content, node->content, node->content_size);
+	ft_memcpy(new->content, node->content, node->content_size);
 	new->content_size = node->content_size;
 	new->next = NULL;
 	return (new);

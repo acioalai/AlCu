@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/09 16:39:26 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/10 22:15:14 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:20:19 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 	{
 		if (*p1 != *p2)
 			return ((int)((unsigned char)(*p1) - (unsigned char)(*p2)));
-		p1++, p2++;
+		p1++;
+		p2++;
 	}
 	return (0);
 }

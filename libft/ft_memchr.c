@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/09 16:16:20 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/10 22:15:16 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:19:57 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	{
 		if (*p == (unsigned char)c)
 			return ((void *)p);
-		p++, n--;
+		p++;
+		n--;
 	}
 	return (0);
 }

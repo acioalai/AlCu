@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 00:17:27 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/11 00:20:34 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 14:07:42 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_strequ(char const *s1, char const *s2)
 {
-	if (ft_strcmp(s1, s2) == 0)
+	if (s1 != NULL && s2 != NULL && ft_strcmp(s1, s2) == 0)
 		return (1);
 	else
 		return (0);

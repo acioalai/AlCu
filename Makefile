@@ -13,18 +13,21 @@ FLAGS=-Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
-	gcc -L./libft -lft $(OBJ) -o $(NAME)
+	@make -C libft/ re
+	@gcc -L./libft -lft $(OBJ) -o $(NAME)
 
 $(OBJ):
-	gcc $(FLAGS) -c $(SRC) $(INCLUDE) -g
+	@gcc $(FLAGS) -c $(SRC) $(INCLUDE)
 
 $(LIB):
-	make -C libft/
+	@make -C libft/
 
 clean:
-	/bin/rm -f $(OBJ)
+	@make -C libft/ clean
+	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@make -C libft/ fclean
+	@/bin/rm -f $(NAME)
 
 re: fclean all

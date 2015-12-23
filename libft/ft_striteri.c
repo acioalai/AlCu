@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/10 22:59:12 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/10 23:32:24 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:22:01 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	unsigned int	i;
 
 	i = 0;
+	if (s == NULL || f == NULL)
+		return ;
 	while (*s != '\0')
 	{
 		f(i, s);
-		s++, i++;
+		s++;
+		i++;
 	}
 }

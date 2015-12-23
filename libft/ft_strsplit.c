@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/11 02:58:35 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/13 11:29:26 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:28:06 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	ft_count(const char *str, char c, int len[])
 			len[word] = 0;
 			while (str[s] != c && str[s] != '\0')
 			{
-				len[word]++, s++;
+				len[word]++;
+				s++;
 			}
 			word++;
 		}
@@ -36,31 +37,31 @@ static int	ft_count(const char *str, char c, int len[])
 	return (word);
 }
 
-char		**ft_strsplit(char const *str, char c)
+char		**ft_strsplit(char const *s, char c)
 {
 	int		len[100];
-	char	**matrix;
+	char	**m;
 	int		i;
 	int		k;
-	int		s;
+	int		si;
 
 	i = 0;
-	s = 0;
-	if (!(matrix = (char **)malloc(sizeof(char *) * ft_count(str, c, len) + 1)))
+	si = 0;
+	if (!s || !(m = (char **)malloc(sizeof(char *) * ft_count(s, c, len) + 1)))
 		return (NULL);
-	while (str[s])
+	while (s[si])
 	{
-		while (str[s] == c)
-			s++;
-		if (str[s] != c && str[s] != '\0')
+		while (s[si] == c)
+			si++;
+		if (s[si] != c && s[si] != '\0')
 		{
 			k = 0;
-			*(matrix + i) = (char *)malloc(sizeof(char) * len[i] + 1);
-			while (str[s] != c && str[s] != '\0')
-				matrix[i][k++] = str[s++];
+			*(m + i) = (char *)malloc(sizeof(char) * len[i] + 1);
+			while (s[si] != c && s[si] != '\0')
+				m[i][k++] = s[si++];
 			i++;
 		}
 	}
-	matrix[i] = 0;
-	return (matrix);
+	m[i] = 0;
+	return (m);
 }

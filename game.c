@@ -6,7 +6,7 @@
 /*   By: acioalai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 15:18:28 by acioalai          #+#    #+#             */
-/*   Updated: 2015/12/20 15:34:44 by acioalai         ###   ########.fr       */
+/*   Updated: 2015/12/20 23:16:25 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	print_line(t_line *line)
 
 	i = -1;
 	while (++i < line->nb_matches)
-		ft_putstr("| ");
+		ft_putstr("\033[33m\033[1m| \033[0m");
 	ft_putstr("\n");
 }
 
-int		check_user_input(char *input, int nb_nb_matches)
+int		check_user_input(char *input, int nb_matches)
 {
 	int		i;
 	int		nbr;
@@ -34,61 +34,79 @@ int		check_user_input(char *input, int nb_nb_matches)
 	nbr = ft_atoi(input);
 	if (nbr < 1 || nbr > 3)
 		return (0);
-	if (nbr > nb_nb_matches)
+	if (nbr > nb_matches)
 		return (0);
 	return (nbr);
 }
 
-void	user_turn(t_line *line)
+void	user_turn(t_line *line, t_line *begin_list)
 {
 	char	*user_input;
 	int		i;
 	int		input;
 
-	ft_putstr("User's turn\n");
+	ft_putstr("Your turn:\n");
+	print_map(begin_list);
 	input = 0;
 	while (input == 0)
 	{
-		ft_putstr("Choose a number of nb_matches to remove: ");
+		ft_putstr("\033[1mChoose a number of matches to remove: \033[0m");
 		get_next_line(0, &user_input);
 		i = -1;
 		input = check_user_input(user_input, line->nb_matches);
 	}
 	line->nb_matches -= input;
+	ft_putstr("--------------------------------------\n");
 }
 
-void	game_over(int loser)
-{
-	if (loser == USR)
-		ft_putstr("Computer wins!\n");
-	else
-		ft_putstr("User wins!\n");
-}
-
-void	computer_turn(t_line *line)
+int		computer_decision(t_line *line)
 {
 	int		rst;
 
-	ft_putstr("Computer's turn\n");
 	rst = line->nb_matches % 4;
 	if (rst == 1)
-		line->nb_matches -= 1;
+		return (1);
 	if (line->last_player == USR)
 	{
 		if (rst == 0)
-			line->nb_matches -= 3;
+			return (3);
 		if (rst == 2)
-			line->nb_matches -= 1;
+			return (1);
 		if (rst == 3)
-			line->nb_matches -= 2;
+			return (2);
 	}
 	else if (line->last_player == CPU)
 	{
 		if (rst == 0)
-			line->nb_matches -= 1;
+			return (1);
 		else if (rst == 2)
-			line->nb_matches -= 2;
+			return (2);
 		else if (rst == 3)
-			line->nb_matches -= 3;
+			return (3);
+	}
+	return (0);
+}
+
+void	computer_turn(t_line *line, t_line *begin_list)
+{
+	int		remove;
+	char	str[8];
+
+	remove = computer_decision(line);
+	if (!(line->nb_matches - remove == 0 && line->prev == NULL))
+	{
+		ft_putstr("Computer's turn:\n");
+		print_map(begin_list);
+		ft_putstr("--------------------------------------\n");
+		if (remove == 1)
+			ft_strcpy(str, "match");
+		else
+			ft_strcpy(str, "matches");
+		ft_putstr("(computer removed ");
+		ft_putnbr(remove);
+		ft_putstr(" ");
+		ft_putstr(str);
+		ft_putstr(")\n");
+		line->nb_matches -= remove;
 	}
 }

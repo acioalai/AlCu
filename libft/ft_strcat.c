@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/06 13:19:04 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/08 13:37:34 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 17:21:41 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_strcat(char *dest, const char *src)
 	while (src[i] != '\0')
 	{
 		dest[k] = src[i];
-		i++, k++;
+		i++;
+		k++;
 	}
 	dest[k] = '\0';
 	return (dest);

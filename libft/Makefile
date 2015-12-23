@@ -6,7 +6,7 @@
 #    By: alaza <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/08 20:08:14 by alaza             #+#    #+#              #
-#    Updated: 2014/11/16 17:48:03 by alaza            ###   ########.fr        #
+#    Updated: 2015/12/21 21:29:30 by alaza            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,13 +27,13 @@ OBJ_LST = ft_lstnew.o ft_lstdelone.o ft_lstdel.o ft_lstadd.o ft_lstiter.o ft_lst
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Wextra -Werror -g3 $(SRC) $(SRC_SUPL) $(SRC_LST)
-	ar rc $(NAME) $(OBJ) $(OBJ_SUPL) $(OBJ_LST)
+	@gcc -c -Wall -Wextra -Werror -g3 $(SRC) $(SRC_SUPL) $(SRC_LST)
+	@ar rc $(NAME) $(OBJ) $(OBJ_SUPL) $(OBJ_LST)
 
 clean:
-	/bin/rm -f $(OBJ) $(OBJ_SUPL) $(OBJ_LST)
+	@/bin/rm -f $(OBJ) $(OBJ_SUPL) $(OBJ_LST)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

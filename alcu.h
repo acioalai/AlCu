@@ -6,7 +6,7 @@
 /*   By: acioalai <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 15:33:22 by acioalai          #+#    #+#             */
-/*   Updated: 2015/12/20 15:38:04 by acioalai         ###   ########.fr       */
+/*   Updated: 2015/12/20 20:16:26 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ typedef struct		s_line
 }					t_line;
 
 void				print_line(t_line *line);
-void				user_turn(t_line *line);
+void				print_map(t_line *begin_list);
+void				user_turn(t_line *line, t_line *begin_list);
 void				game_over(int loser);
-void				computer_turn(t_line *line);
+void				computer_turn(t_line *line, t_line *begin_list);
 void				display(t_line *line, int turn);
 int					read_input(int fd, t_line **begin_list);
 

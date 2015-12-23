@@ -6,7 +6,7 @@
 /*   By: alaza <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 18:58:40 by alaza             #+#    #+#             */
-/*   Updated: 2014/11/14 15:03:11 by alaza            ###   ########.fr       */
+/*   Updated: 2015/12/05 15:34:50 by alaza            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	del(*alst, (*alst)->content_size);
+	if (alst == NULL || *alst == NULL || del == NULL)
+		return ;
+	del((*alst)->content, (*alst)->content_size);
 	free(*alst);
 	*alst = NULL;
 }
